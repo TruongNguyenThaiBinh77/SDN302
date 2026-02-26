@@ -1,0 +1,49 @@
+Starting Verification Tests...
+
+--- 1. Register Admin ---
+Status: 400 Bad Request
+
+--- 2. Register User 1 ---
+Status: 400 Bad Request
+
+--- 3. Register User 2 ---
+Status: 400 Bad Request
+
+--- 4. Login Admin ---
+Status: 200
+Admin Logged In
+
+--- 5. Login User 1 ---
+User 1 Logged In
+
+--- 6. Login User 2 ---
+User 2 Logged In
+
+--- 7. User 1 tries to create Quiz (Expect Fail) ---
+Status: 403 (Expected 403)
+
+--- 8. Admin creates Quiz (Expect Success) ---
+Status: 201 (Expected 200/201)
+Quiz Created ID: 69786069e80a0a11c4153c28
+
+--- 9. User 1 creates Question (Expect Success) ---
+Status: 201 (Expected 201)
+Question 1 Created ID: 69786069e80a0a11c4153c2b
+
+--- 10. User 1 updates Question 1 (Expect Success) ---
+Status: 200 (Expected 200)
+
+--- 11. User 2 updates Question 1 (Expect Fail 403) ---
+Status: 403 (Expected 403)
+
+--- 12. Admin updates Question 1 (Expect Fail 403) ---
+Status: 403 (Expected 403)
+
+--- 13. User 1 GET /users (Expect Fail 403) ---
+Status: 403 (Expected 403)
+
+--- 14. Admin GET /users (Expect Success) ---
+Status: 200 (Expected 200)
+Users found: 3
+
+--- Tests Completed ---

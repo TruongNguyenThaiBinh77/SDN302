@@ -1,0 +1,101 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Card hover lift effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Auth page background */
+.auth-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f4fd 0%, #f8f9fa 60%, #e8f0fe 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Navbar shadow */
+.navbar-custom {
+  background: #ffffff;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Quiz option hover */
+.option-label {
+  display: block;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-bottom: 0.5rem;
+}
+.option-label:hover {
+  border-color: #0d6efd;
+  background: #f0f6ff;
+}
+.option-correct {
+  border-color: #198754 !important;
+  background: #d1e7dd !important;
+  color: #0a3622;
+  font-weight: 600;
+}
+.option-wrong {
+  border-color: #dc3545 !important;
+  background: #f8d7da !important;
+  color: #58151c;
+}
+.option-selected-correct {
+  border-color: #198754 !important;
+  background: #d1e7dd !important;
+}
+
+/* Progress bar smooth */
+.progress {
+  border-radius: 50px;
+}
+
+/* Badge pill */
+.badge-pill {
+  border-radius: 50px;
+  font-weight: 500;
+}
+
+/* Page header */
+.page-header {
+  padding: 1.5rem 0 1rem;
+  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 1.5rem;
+}
+
