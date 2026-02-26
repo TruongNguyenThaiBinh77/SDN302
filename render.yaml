@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: assignment4-server
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+
