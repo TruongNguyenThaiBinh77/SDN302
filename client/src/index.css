@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 :root {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
@@ -11,11 +16,16 @@
 }
 
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
   background-color: #f8f9fa;
   color: #212529;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
@@ -37,6 +47,7 @@ button {
 
 /* Auth page background */
 .auth-wrapper {
+  flex: 1;
   min-height: 100vh;
   background: linear-gradient(135deg, #e8f4fd 0%, #f8f9fa 60%, #e8f0fe 100%);
   display: flex;
