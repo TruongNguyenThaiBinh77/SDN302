@@ -38,11 +38,11 @@ const ConfirmModal = ({
               className={`bg-${variant} bg-opacity-10 px-4 pt-4 pb-3 d-flex align-items-center gap-3`}
             >
               <div
-                className={`d-flex align-items-center justify-content-center rounded-circle bg-${variant} bg-opacity-15`}
+                className={`d-flex align-items-center justify-content-center rounded-circle bg-${variant}`}
                 style={{ width: 48, height: 48, flexShrink: 0 }}
               >
                 <FaExclamationTriangle
-                  className={`text-${variant}`}
+                  className="text-white"
                   style={{ fontSize: 22 }}
                 />
               </div>
