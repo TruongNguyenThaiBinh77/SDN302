@@ -9,6 +9,7 @@ import {
 } from "./questionSlice";
 import { fetchQuizzes } from "../quizzes/quizSlice";
 import Header from "../../components/Header";
+import ConfirmModal from "../../components/ConfirmModal";
 import {
   FaCog,
   FaCheckCircle,
@@ -40,6 +41,7 @@ const QuestionManager = () => {
 
   const [formData, setFormData] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null); // null = create mode, id = edit mode
+  const [confirmModal, setConfirmModal] = useState({ show: false, id: null });
 
   useEffect(() => {
     dispatch(fetchQuestions());
@@ -118,9 +120,16 @@ const QuestionManager = () => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      dispatch(deleteQuestion(id));
-    }
+    setConfirmModal({ show: true, id });
+  };
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteQuestion(confirmModal.id));
+    setConfirmModal({ show: false, id: null });
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmModal({ show: false, id: null });
   };
 
   return (
@@ -402,6 +411,14 @@ const QuestionManager = () => {
           </div>
         </div>
       </div>
+      <ConfirmModal
+        show={confirmModal.show}
+        title="Xóa Câu Hỏi"
+        message="Bạn có chắc muốn xóa câu hỏi này không? Hành động này không thể hoàn tác."
+        variant="danger"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </>
   );
 };

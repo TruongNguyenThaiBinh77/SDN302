@@ -9,6 +9,7 @@ import {
 } from "./quizSlice";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
+import ConfirmModal from "../../components/ConfirmModal";
 import {
   FaClipboardList,
   FaPlus,
@@ -34,6 +35,7 @@ const QuizList = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState(emptyForm);
   const [editingId, setEditingId] = useState(null);
+  const [confirmModal, setConfirmModal] = useState({ show: false, id: null });
 
   useEffect(() => {
     dispatch(fetchQuizzes());
@@ -66,9 +68,16 @@ const QuizList = () => {
   };
 
   const handleDelete = (id) => {
-    if (window.confirm("Delete this quiz and all its questions?")) {
-      dispatch(deleteQuiz(id));
-    }
+    setConfirmModal({ show: true, id });
+  };
+
+  const handleConfirmDelete = () => {
+    dispatch(deleteQuiz(confirmModal.id));
+    setConfirmModal({ show: false, id: null });
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmModal({ show: false, id: null });
   };
 
   const handleCancel = () => {
@@ -261,6 +270,14 @@ const QuizList = () => {
           )}
         </div>
       </div>
+      <ConfirmModal
+        show={confirmModal.show}
+        title="Xóa Quiz"
+        message="Bạn có chắc muốn xóa quiz này và toàn bộ câu hỏi trong đó không?"
+        variant="danger"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </>
   );
 };
