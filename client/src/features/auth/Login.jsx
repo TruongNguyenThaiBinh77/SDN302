@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, clearMessage } from "./authSlice";
 import { useNavigate, Link } from "react-router-dom";
-import { FaBrain, FaExclamationTriangle } from "react-icons/fa";
+import { FaBrain } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -16,6 +17,19 @@ const Login = () => {
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { toastId: "login-error" });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage, { toastId: "login-success" });
+    }
+  }, [successMessage]);
+
   useEffect(() => {
     if (user) navigate("/quizzes");
   }, [user, navigate]);
@@ -36,20 +50,6 @@ const Login = () => {
 
         <div className="card shadow-sm border-0 rounded-4">
           <div className="card-body p-4">
-            {error && (
-              <div
-                className="alert alert-danger alert-dismissible border-0 rounded-3"
-                role="alert"
-              >
-                <FaExclamationTriangle className="me-1" /> {error}
-              </div>
-            )}
-            {successMessage && (
-              <div className="alert alert-success border-0 rounded-3">
-                {successMessage}
-              </div>
-            )}
-
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label fw-medium">Username</label>

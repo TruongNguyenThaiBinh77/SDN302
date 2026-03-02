@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUser, clearMessage } from "./authSlice";
-import { Link } from "react-router-dom";
-import {
-  FaBrain,
-  FaExclamationTriangle,
-  FaCheckCircle,
-  FaUserShield,
-} from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaBrain, FaUserShield } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error, successMessage } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error, { toastId: "signup-error" });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage, { toastId: "signup-success" });
+      setTimeout(() => navigate("/login"), 2000);
+    }
+  }, [successMessage, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,17 +46,6 @@ const Signup = () => {
 
         <div className="card shadow-sm border-0 rounded-4">
           <div className="card-body p-4">
-            {error && (
-              <div className="alert alert-danger border-0 rounded-3">
-                <FaExclamationTriangle className="me-1" /> {error}
-              </div>
-            )}
-            {successMessage && (
-              <div className="alert alert-success border-0 rounded-3">
-                <FaCheckCircle className="me-1" /> {successMessage}
-              </div>
-            )}
-
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label fw-medium">Username</label>
